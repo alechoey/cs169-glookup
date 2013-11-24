@@ -1,11 +1,21 @@
 #/bin/ruby
 
+# This script uses the 'watir' gem
+# http://watir.com/
+# and the Google Chrome Webdriver.
+# Download the newest version for your system here:
+# http://chromedriver.storage.googleapis.com/index.html
+
+# This script also uses a set of YAML configuration files,
+# one for each assignment, containing the due dates, edX IDs,
+# and points assigned to each section of the assignment.
+# This script will automatically collect the maximum score for each
+# part of the assignment, taking into account late penalties too.
+
 require 'rubygems'
 require 'watir-webdriver'
 
 require 'csv'
-require_relative '../csv_helpers'
-
 require 'yaml'
 require 'psych'
 require 'uri'
