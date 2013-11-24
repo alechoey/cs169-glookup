@@ -1,0 +1,14 @@
+---
+name: hw1.5
+class_id: "BerkeleyX/CS169.1xb/Software_as_a_Service_part_1_rev_Fall_2013_"
+due_date: 2013-09-30 06:59:00+00:00
+late_penalty: 0.25
+modules:
+  - id: "i4x://BerkeleyX/CS169.1xb/problem/c0b4fd53dd0e4f7e8b191ed22195c1cc"
+    points: 100
+  - id: "i4x://BerkeleyX/CS169.1xb/problem/f5a26b74370147e4b316916f39593c2d"
+    points: 100
+  - id: "i4x://BerkeleyX/CS169.1xb/problem/a8c930851f2d4dd0aa89363473fee028"
+    points: 100
+  - id: "i4x://BerkeleyX/CS169.1xb/problem/67f262aabe864731a20e980d6c7a7edd"
+    points: 100

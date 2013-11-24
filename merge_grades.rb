@@ -3,17 +3,17 @@
 require 'csv'
 require_relative 'csv_helpers'
 
-midterm1_grades_file = 'midterm1/midterm1_grades.csv'
-edx_usernames_file = 'input/edx_usernames.csv'
-homework_grades_file = 'input/edx_grades.csv'
+midterm1_grades_file = File.expand_path('../midterm1/midterm1_grades.csv', __FILE__)
+edx_usernames_file = File.expand_path('../input/edx_usernames.csv', __FILE__)
+homework_grades_file = File.expand_path('../input/edx_grades.csv', __FILE__)
 
 # Output files
-merged_grades_file = 'output/final_grades.csv'
-missing_usernames_file = 'output/missing_usernames.txt'
-missing_names_file = 'output/missing_names.txt'
+merged_grades_file = File.expand_path('../output/final_grades.csv', __FILE__)
+missing_usernames_file = File.expand_path('../output/missing_usernames.txt', __FILE__)
+missing_names_file = File.expand_path('../output/missing_names.txt', __FILE__)
 
 # Map from edX name to Pandagrader name for names that need to be manually matched
-name_map_file = 'mismatched_names.csv'
+name_map_file = File.expand_path('../input/mismatched_names.csv', __FILE__)
 
 midterm_grades = CSV.load_hash midterm1_grades_file, 'Name', ['SID', 'Total Score'], NameHash.new
 edx_usernames = CSV.load_hash edx_usernames_file, 'Username', 'Full Name'
@@ -50,13 +50,15 @@ CSV.foreach(homework_grades_file, :headers => true, :return_headers => false) do
         row['hw2'],
         row['hw3'],
         row['hw4'],
+        row['hw5a'],
+        row['hw5b'],
         midterm_grade
     ]
     merged_grades << grade_entry
 end
 
 CSV.open(merged_grades_file, 'wb') do |csv|
-    csv << ['SID', 'hw0', 'hw1', 'hw1.5', 'hw2', 'hw3', 'hw4', 'midterm1']
+    csv << ['SID', 'hw0', 'hw1', 'hw1.5', 'hw2', 'hw3', 'hw4', 'hw5a', 'hw5b', 'midterm1']
     merged_grades.each do |grade|
         csv << grade
     end

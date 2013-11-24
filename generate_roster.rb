@@ -22,8 +22,7 @@ unweighted_max = ARGV[3] || 100
 weighted_max = ARGV[4] || 100
 
 
-graded_roster_file = Pathname.new(roster_file).parent.join('/output',
-                                                           "#{assignment_id}_#{roster_file}")
+graded_roster_file = File.expand_path("../../output/#{assignment_id}_roster", roster_file)
 assignment_grades = CSV.load_hash merged_grades_file, 'SID', assignment_id
 
 File.open(roster_file, 'r') do |roster|

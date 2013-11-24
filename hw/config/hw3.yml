@@ -1,0 +1,8 @@
+---
+name: hw3
+class_id: "BerkeleyX/CS169.1xb/Software_as_a_Service_part_1_rev_Fall_2013_"
+due_date: 2013-10-14 06:59:00+00:00
+late_penalty: 0.25
+modules:
+  - id: "i4x://BerkeleyX/CS169.1xb/problem/1d40b828d4ce41f5bbf2854bf68bf1c4"
+    points: 500
