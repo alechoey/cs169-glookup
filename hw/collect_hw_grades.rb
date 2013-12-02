@@ -20,7 +20,7 @@ require 'uri'
 
 edx_usernames_file = File.expand_path('../../input/edx_usernames.csv', __FILE__)
 hw_config_path = File.expand_path('../config/*.yml', __FILE__)
-output_path = File.expand_path('../../input/edx_grades.csv', __FILE__)
+output_path = File.expand_path('../edx_grades.csv', __FILE__)
  
 EDX_BASE_URL = 'https://edge.edx.org'
 

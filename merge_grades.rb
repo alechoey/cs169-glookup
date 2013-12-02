@@ -9,7 +9,7 @@ MERGED_CSV_HEADER = ['Name', 'SID'] + ASSIGNMENTS
 
 midterm_grades_file = File.expand_path('../midterm/midterm_grades.csv', __FILE__)
 edx_usernames_file = File.expand_path('../input/edx_usernames.csv', __FILE__)
-homework_grades_file = File.expand_path('../input/edx_grades.csv', __FILE__)
+homework_grades_file = File.expand_path('../hw/edx_grades.csv', __FILE__)
 
 # Output files
 merged_grades_file = File.expand_path('../output/final_grades.csv', __FILE__)
