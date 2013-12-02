@@ -34,7 +34,7 @@ File.open(roster_file, 'r') do |roster|
                 sid = $3
                 assignment_grade = assignment_grades[sid]
                 if assignment_grade.nil?
-                    puts "#{name} is missing #{assignment_id} grade"
+                    puts "#{name} with SID #{sid} is missing #{assignment_id} grade"
                     next
                 end
 
