@@ -1,5 +1,3 @@
-#/bin/ruby
-
 require 'csv'
 
 old_edx_file = 'input/old_edx_usernames.csv'

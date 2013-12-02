@@ -1,5 +1,3 @@
-#/bin/ruby
-
 require 'csv'
 require_relative 'csv_helpers'
 

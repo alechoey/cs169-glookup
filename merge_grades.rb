@@ -1,15 +1,13 @@
-#/bin/ruby
-
 require 'csv'
 require_relative 'csv_helpers'
 
 HOMEWORKS = ['hw0', 'hw1', 'hw1.5', 'hw2', 'hw3', 'hw4', 'hw5a', 'hw5b']
 PROJECTS = []
-MIDTERMS = ['midterm1']
+MIDTERMS = ['midterm1', 'midterm2']
 ASSIGNMENTS = HOMEWORKS + PROJECTS +  MIDTERMS
 MERGED_CSV_HEADER = ['Name', 'SID'] + ASSIGNMENTS
 
-midterm1_grades_file = File.expand_path('../midterm1/midterm1_grades.csv', __FILE__)
+midterm_grades_file = File.expand_path('../midterm/midterm_grades.csv', __FILE__)
 edx_usernames_file = File.expand_path('../input/edx_usernames.csv', __FILE__)
 homework_grades_file = File.expand_path('../input/edx_grades.csv', __FILE__)
 
@@ -24,7 +22,7 @@ mismatched_names_file = File.expand_path('../input/mismatched_names.csv', __FILE
 # File of manual grade adjustments
 manual_grade_adjustments_file = File.expand_path('../input/manual_grade_adjustments.csv', __FILE__)
 
-@midterm_grades = CSV.load_hash midterm1_grades_file, 'Name', ['SID', 'Total Score'], NameHash.new
+@midterm_grades = CSV.load_hash midterm_grades_file, 'Name', ['SID'] + MIDTERMS, :target => NameHash.new, :value_type => Hash
 @edx_usernames = CSV.load_hash edx_usernames_file, 'Username', 'Full Name'
 
 if File.exists? mismatched_names_file
@@ -54,9 +52,9 @@ CSV.foreach(homework_grades_file, :headers => true, :return_headers => false) do
     next 
   end
 
-  sid = midterm_grade_row[0]
-  midterm_grade = midterm_grade_row[1]
-  grade_entry = { 'Name' => name, 'SID' => sid, 'midterm1' => midterm_grade }
+  grade_entry = midterm_grade_row
+  grade_entry['Name'] = name
+  sid = grade_entry['SID']
   HOMEWORKS.each do |assign|
     grade_entry[assign] = row[assign]
   end
@@ -67,7 +65,7 @@ if File.exists? manual_grade_adjustments_file
   CSV.foreach(manual_grade_adjustments_file, :headers => true, :return_headers => false) do |row|
     name = row['Name']
     midterm_grade_row = @midterm_grades[name]
-    sid = midterm_grade_row[0]
+    sid = midterm_grade_row['SID']
     
     ASSIGNMENTS.each do |assign|
       next if row[assign].nil? || row[assign].empty?

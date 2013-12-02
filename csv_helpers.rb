@@ -41,9 +41,22 @@ end
 
 
 class CSV
-  def self.load_hash(csv_file, key="", values=[], target=DowncaseHash.new)
+  def self.load_hash(csv_file, key="", values=[], options={})
+    target = options[:target] || DowncaseHash.new
+    value_type = options[:value_type] || values.class
     CSV.foreach(csv_file, :headers => true, :return_headers => false) do |row|
-      vals = (values.is_a?(Array) ? values.map { |val| row[val] } : row[values])
+      value_type = value_type.to_s
+      case value_type
+      when 'Array'
+        vals = values.map { |val| row[val] }
+      when 'Hash'
+        vals = {}
+        values.each do |val|
+          vals[val] = row[val]
+        end
+      else
+        vals = row[values]
+      end
       target[row[key]] = vals
     end
     target

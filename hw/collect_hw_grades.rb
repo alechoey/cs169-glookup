@@ -1,5 +1,3 @@
-#/bin/ruby
-
 # This script uses the 'watir' gem
 # http://watir.com/
 # and the Google Chrome Webdriver.
