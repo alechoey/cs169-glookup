@@ -35,6 +35,11 @@ CSV.foreach midterm1_grades_file, :headers => true, :return_headers => false do 
     row['Total Score'],
     midterm2_grades[row['SID']]
   ]
+  midterm2_grades.delete row['SID']
 end
 
 CSV.dump_array midterm_grades_ouput_file, values, ['Name', 'SID', 'midterm1', 'midterm2']
+
+midterm2_grades.each do |sid, grade|
+  puts "#{sid} was not joined to a midterm 1 score"
+end
