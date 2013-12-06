@@ -2,7 +2,7 @@ require 'csv'
 require_relative 'csv_helpers'
 
 HOMEWORKS = ['hw0', 'hw1', 'hw1.5', 'hw2', 'hw3', 'hw4', 'hw5a', 'hw5b']
-PROJECTS = ['iter1-2', 'iter2-2', 'iter3-2']
+PROJECTS = ['iter0-2', 'iter0-3', 'iter1-2', 'iter2-2', 'iter3-2']
 MIDTERMS = ['midterm1', 'midterm2']
 ASSIGNMENTS = HOMEWORKS + PROJECTS +  MIDTERMS
 MERGED_CSV_HEADER = ['Name', 'SID'] + ASSIGNMENTS
