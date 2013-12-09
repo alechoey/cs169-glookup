@@ -33,7 +33,7 @@ CSV.foreach midterm1_grades_file, :headers => true, :return_headers => false do 
     row['Name'],
     row['SID'],
     row['Total Score'],
-    midterm2_grades[row['SID']]
+    midterm2_grades[row['SID']].to_f + 2
   ]
   midterm2_grades.delete row['SID']
 end

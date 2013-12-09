@@ -84,6 +84,10 @@ if File.exists? manual_grade_adjustments_file
   CSV.foreach(manual_grade_adjustments_file, :headers => true, :return_headers => false) do |row|
     name = row['Name']
     midterm_grade_row = @midterm_grades[name]
+    if midterm_grade_row.nil?
+      puts "Could not find grade to adjust for #{name}"
+      next
+    end
     sid = midterm_grade_row['SID']
     
     ASSIGNMENTS.each do |assign|
