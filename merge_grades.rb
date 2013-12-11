@@ -2,15 +2,20 @@ require 'csv'
 require_relative 'csv_helpers'
 
 HOMEWORKS = ['hw0', 'hw1', 'hw1.5', 'hw2', 'hw3', 'hw4', 'hw5a', 'hw5b']
-PROJECTS = ['iter0-2', 'iter0-3', 'iter1-2', 'iter2-2', 'iter3-2']
+PROJECTS = ['iter0-2', 'iter0-3', 'iter1-2', 'iter2-2', 'iter3-2', 'iter4-2', 'poster']
 MIDTERMS = ['midterm1', 'midterm2']
-ASSIGNMENTS = HOMEWORKS + PROJECTS +  MIDTERMS
+EVALS = ['self-eval', 'avg-peer-eval']
+ASSIGNMENTS = HOMEWORKS + PROJECTS +  MIDTERMS + EVALS
 MERGED_CSV_HEADER = ['Name', 'SID'] + ASSIGNMENTS
+
+EVAL_PEER_HEADERS = ['Peer2', 'Peer3', 'Peer4', 'Peer5', 'Peer6']
+EVAL_HEADERS = ['PeerSelf'] + EVAL_PEER_HEADERS
 
 midterm_grades_file = File.expand_path('../midterm/midterm_grades.csv', __FILE__)
 edx_usernames_file = File.expand_path('../input/edx_usernames.csv', __FILE__)
 homework_grades_file = File.expand_path('../hw/edx_grades.csv', __FILE__)
 project_grades_file = File.expand_path('../project/merged_project_grades.csv', __FILE__)
+merged_evals_file = File.expand_path('../project/merged_evals.csv', __FILE__)
 
 # Output files
 merged_grades_file = File.expand_path('../output/raw_grades.csv', __FILE__)
@@ -26,6 +31,7 @@ manual_grade_adjustments_file = File.expand_path('../input/manual_grade_adjustme
 
 @midterm_grades = CSV.load_hash midterm_grades_file, 'Name', ['SID'] + MIDTERMS, :target => NameHash.new, :value_type => Hash
 @edx_usernames = CSV.load_hash edx_usernames_file, 'Username', 'Full Name'
+@evals = CSV.load_hash merged_evals_file, 'SID', EVAL_HEADERS, :value_type => Hash
 
 if File.exists? mismatched_names_file
   mismatched_names = CSV.load_hash mismatched_names_file, 'edX Name', 'Pandagrader Name'
@@ -61,6 +67,14 @@ CSV.foreach(homework_grades_file, :headers => true, :return_headers => false) do
   HOMEWORKS.each do |assign|
     grade_entry[assign] = row[assign]
   end
+
+  eval_row = @evals[sid]
+  raise "No evaluation for SID, #{sid}" if eval_row.nil?
+  unless @evals[sid].nil? || @evals[sid].empty?
+    grade_entry['self-eval'] = 2
+  end
+  peer_evals = EVAL_PEER_HEADERS.map { |peer| eval_row[peer] }.reject(&:nil?).map(&:to_i)
+  grade_entry['avg-peer-eval'] = peer_evals.inject(:+).to_f / peer_evals.size
   @merged_grades[sid] = grade_entry
 end
 
@@ -78,7 +92,6 @@ CSV.foreach(project_grades_file, :headers => true, :return_headers => false) do 
     @merged_grades[sid][proj] = row[proj]
   end
 end
-  
 
 if File.exists? manual_grade_adjustments_file
   CSV.foreach(manual_grade_adjustments_file, :headers => true, :return_headers => false) do |row|

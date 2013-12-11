@@ -2,34 +2,42 @@
   - name: hw0
     max_points: 300
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: hw1
     max_points: 400
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: hw1.5
     max_points: 400
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: hw2
     max_points: 100
     weight: 0.04166666666667
+    scale_for_glookup: true
       
   - name: hw3
     max_points: 500
     weight: 0.04166666666667
+    scale_for_glookup: true
       
   - name: hw4
     max_points: 500
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: hw5a
     max_points: 100
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: hw5b
     max_points: 100
     weight: 0.04166666666667
+    scale_for_glookup: true
 
   - name: iter0-2
     max_points: 10
@@ -62,3 +70,11 @@
   - name: midterm2
     max_points: 75
     weight: 0.16666666666667
+
+  - name: self-eval
+    max_points: 2
+    weight: 0.00555555555556
+
+  - name: poster
+    max_points: 20
+    weight: 0.05555555555556

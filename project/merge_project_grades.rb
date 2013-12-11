@@ -6,7 +6,7 @@ iteration_grades_file = File.expand_path('../iteration_grades.csv', __FILE__)
 
 project_grades_output_file = File.expand_path('../merged_project_grades.csv', __FILE__)
 
-PROJECT_GRADES = ['iter0-2', 'iter0-3', 'iter1-2', 'iter2-2', 'iter3-2']
+PROJECT_GRADES = ['iter0-2', 'iter0-3', 'iter1-2', 'iter2-2', 'iter3-2', 'iter4-2', 'poster']
 
 @groups = CSV.load_hash project_roster_file, 'Group Number', [
   'Student 1',
