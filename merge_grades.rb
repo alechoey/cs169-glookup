@@ -13,7 +13,7 @@ homework_grades_file = File.expand_path('../hw/edx_grades.csv', __FILE__)
 project_grades_file = File.expand_path('../project/merged_project_grades.csv', __FILE__)
 
 # Output files
-merged_grades_file = File.expand_path('../output/final_grades.csv', __FILE__)
+merged_grades_file = File.expand_path('../output/raw_grades.csv', __FILE__)
 missing_usernames_file = File.expand_path('../output/missing_usernames.txt', __FILE__)
 missing_midterm_names_file = File.expand_path('../output/missing_midterm_names.txt', __FILE__)
 missing_project_names_file = File.expand_path('../output/missing_project_names.txt', __FILE__)
