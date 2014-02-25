@@ -1,7 +1,8 @@
 grades = c('A', 'B', 'C', 'D', 'F');
 gpas = as.numeric(c(4, 3, 2, 1, 0));
 data = read.csv('~/Documents//Berkeley/Fall 2013/CS169/grades/output/final_grades.csv');
-hist(data$Total, breaks=237);
+
+hist(data$Total[which(data$Total >= 70)], breaks=237);
 
 model = kmeans(data$Total, length(grades));
 centers = model$centers[order(model$centers,decreasing=TRUE),];

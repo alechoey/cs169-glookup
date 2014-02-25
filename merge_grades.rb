@@ -70,7 +70,7 @@ CSV.foreach(homework_grades_file, :headers => true, :return_headers => false) do
 
   eval_row = @evals[sid]
   raise "No evaluation for SID, #{sid}" if eval_row.nil?
-  unless @evals[sid].nil? || @evals[sid].empty?
+  unless eval_row['PeerSelf'].nil? || eval_row['PeerSelf'].empty?
     grade_entry['self-eval'] = 2
   end
   peer_evals = EVAL_PEER_HEADERS.map { |peer| eval_row[peer] }.reject(&:nil?).map(&:to_i)

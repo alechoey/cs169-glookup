@@ -29,12 +29,16 @@ end
 @avg_gpa = 0
 @student_count = 0
 load_cutoffs grade_cutoffs_file
-CSV.open letter_grades_file, 'wb' do |csv|
-  CSV.foreach weighted_grades_file, :headers => true, :return_headers => false do |row|
-    total = row['Total'].to_f
-    grade = find_grade_for_score total
-    csv << [row['Name'], row['SID'], row['Total'], grade]
-  end
+@grades = []
+@header = ['Name', 'SID', 'Total', 'Grade']
+  
+CSV.foreach weighted_grades_file, :headers => true, :return_headers => false do |row|
+  total = row['Total'].to_f
+  grade = find_grade_for_score total
+  @grades << [row['Name'], row['SID'], total, grade]
 end
+
+CSV.dump_array letter_grades_file, @grades.sort_by { |row| -row[2] }, @header
+
 @avg_gpa /= @student_count
 puts "Average GPA: #{@avg_gpa}"

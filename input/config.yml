@@ -18,12 +18,12 @@
     max_points: 100
     weight: 0.04166666666667
     scale_for_glookup: true
-      
+
   - name: hw3
     max_points: 500
     weight: 0.04166666666667
     scale_for_glookup: true
-      
+
   - name: hw4
     max_points: 500
     weight: 0.04166666666667
@@ -49,11 +49,11 @@
 
   - name: iter1-2
     max_points: 20
-    weight: 0.05555555555556 
+    weight: 0.05555555555556
 
   - name: iter2-2
     max_points: 20
-    weight: 0.05555555555556 
+    weight: 0.05555555555556
 
   - name: iter3-2
     max_points: 20

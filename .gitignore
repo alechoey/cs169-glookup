@@ -2,3 +2,7 @@
 .Rapp.history
 *~
 midterm/midterm2_solutions
+output/
+input/roster
+
+**/*.csv
